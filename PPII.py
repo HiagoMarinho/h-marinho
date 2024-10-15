@@ -40,12 +40,12 @@ class MainApp(App):
         self.sound = SoundLoader.load('count_sound.wav')
         self.check = True
         self.is_playing = False
-        self.tp = 0  # Verdadeiros Positivos
-        self.fp = 0  # Falsos Positivos
-        self.fn = 0  # Falsos Negativos
+        self.tp = 0  
+        self.fp = 0  
+        self.fn = 0  
         self.capture = None
-        self.video_folder = "c:/Users/hmari/OneDrive/Documentos/CALCULO 1/Nova pasta/videos"  # Ajuste o caminho da pasta
-        Window.size = (640, 480)  # Tamanho da janela
+        self.video_folder = "c:/Users/hmari/OneDrive/Documentos/CALCULO 1/Nova pasta/videos" 
+        Window.size = (640, 480)  
         self.load_video_files()
 
     def load_video_files(self):
