@@ -42,9 +42,9 @@ class MainApp(App):
         self.is_playing = False
         self.tp = 0  
         self.fp = 0  
-        self.fn = 0  
+        self.fn = 0
         self.capture = None
-        self.video_folder = "c:/Users/hmari/OneDrive/Documentos/CALCULO 1/Nova pasta/videos" 
+        self.video_folder = "c:/Users/hmari/OneDrive/Documentos/CALCULO 1/Nova pasta/videos"  
         Window.size = (640, 480)  
         self.load_video_files()
 
@@ -57,8 +57,6 @@ class MainApp(App):
             Color(1, 1, 1, 1)
             self.rect = RoundedRectangle(size=self.layout.size, pos=self.layout.pos)
         self.layout.bind(size=self.update_rect, pos=self.update_rect)
-        self.label = Label(text='Contador de Exercícios: 0', color=(1, 1, 1, 1))
-        self.layout.add_widget(self.label)
         button_layout = self.create_button_layout()
         self.layout.add_widget(button_layout)
         return self.layout
@@ -155,15 +153,15 @@ class MainApp(App):
         aspect_ratio = original_width / original_height
 
         # Calcular novas dimensões mantendo a proporção
-        new_width = 640
+        new_width = 800
         new_height = int(new_width / aspect_ratio)
 
-        if new_height > 480:
-            new_height = 480
+        if new_height > 600:
+            new_height = 600
             new_width = int(new_height * aspect_ratio)
 
         img = cv2.resize(img, (new_width, new_height))
-        img = cv2.copyMakeBorder(img, 0, 480 - new_height, 0, 640 - new_width, cv2.BORDER_CONSTANT, value=(255, 255, 255))
+        img = cv2.copyMakeBorder(img, 0, 600 - new_height, 0, 800 - new_width, cv2.BORDER_CONSTANT, value=(255, 255, 255))
 
         videoRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         results = self.Pose.process(videoRGB)
@@ -210,7 +208,7 @@ class MainApp(App):
             if self.check:
                 self.tp += 1
                 self.contador += 1
-                self.update_label()
+                self.update_sound()
                 self.check = False
         else:
             if distMO > LIMITE_DISTANCIA_MAO and distPE < LIMITE_DISTANCIA_PE:
@@ -232,8 +230,7 @@ class MainApp(App):
         precision = self.calculate_precision()
         return precision
 
-    def update_label(self):
-        self.label.text = f'Contador de Exercícios: {self.contador}'
+    def update_sound(self):
         if self.sound:
             self.sound.play()
 
