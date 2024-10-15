@@ -93,7 +93,6 @@ class MainApp(App):
         self.tp = 0
         self.fp = 0
         self.fn = 0
-     
 
     def create_button(self, text, on_press, background_color=(0.1, 0.8, 0.1, 1)):
         btn = CustomButton(text=text, size_hint=(None, None), width=200, height=80, background_color=background_color)
@@ -153,15 +152,15 @@ class MainApp(App):
         aspect_ratio = original_width / original_height
 
         # Calcular novas dimensões mantendo a proporção
-        new_width = 800
+        new_width = 880
         new_height = int(new_width / aspect_ratio)
 
-        if new_height > 600:
-            new_height = 600
+        if new_height > 660:
+            new_height = 660
             new_width = int(new_height * aspect_ratio)
 
         img = cv2.resize(img, (new_width, new_height))
-        img = cv2.copyMakeBorder(img, 0, 600 - new_height, 0, 800 - new_width, cv2.BORDER_CONSTANT, value=(255, 255, 255))
+        img = cv2.copyMakeBorder(img, 0, 660 - new_height, 0, 880 - new_width, cv2.BORDER_CONSTANT, value=(255, 255, 255))
 
         videoRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         results = self.Pose.process(videoRGB)
