@@ -93,7 +93,7 @@ class MainApp(App):
         self.tp = 0
         self.fp = 0
         self.fn = 0
-        self.update_label()
+     
 
     def create_button(self, text, on_press, background_color=(0.1, 0.8, 0.1, 1)):
         btn = CustomButton(text=text, size_hint=(None, None), width=200, height=80, background_color=background_color)
